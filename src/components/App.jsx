@@ -11,17 +11,20 @@ const App = () => {
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
 
+
   useEffect(() => {
     const storedContacts = localStorage.getItem('contacts');
     const parsedContacts = JSON.parse(storedContacts);
-    if (parsedContacts) {
+    if (parsedContacts && parsedContacts.length > 0) {
       setContacts(parsedContacts);
     }
   }, []);
+ 
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
+ 
 
   const deleteContact = contactId => {
     setContacts(prevContacts =>
